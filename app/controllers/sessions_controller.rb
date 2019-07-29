@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
     password = params[:session][:password]
     if login(email, password)
       flash[:success] = 'ログインに成功しました。'
-      redirect_to @user
+      redirect_to controller: :tasks, action: :index
+      # コントローラ名とアクション名を上記のように指定することで、どのアクションにも飛ばすことができる。
     else
       flash.now[:danger] = 'ログインに失敗しました。'
       render 'new'
